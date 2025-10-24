@@ -1,0 +1,243 @@
+/* Notion-Minimal — Responsive + Solid CTA
+   Font: Inter
+   Mobile textarea height: 320px (spacious)
+   Button style: Solid (dark filled CTA)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --text: #2f3437;
+  --muted: #6b6e71;
+  --border: #dcdcdc;
+  --bg: #f7f7f7;
+  --card-bg: #ffffff;
+  --cta: #1f2937;        /* solid CTA color */
+  --cta-hover: #0f1720;
+  --danger: #d64545;
+  --radius: 10px;
+}
+
+/* Global page */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Header */
+.header {
+  width: 100%;
+  background: var(--card-bg);
+  color: var(--text);
+  padding: 18px 20px;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.1px;
+}
+
+/* Theme toggle placeholder (if present) */
+.theme-toggle {
+  position: fixed;
+  right: 18px;
+  top: 12px;
+  z-index: 40;
+  user-select: none;
+  font-size: 18px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+}
+
+/* Layout container */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 36px auto;
+  width: 100%;
+  padding: 0 16px;
+}
+
+/* Editor Card */
+.editor-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  min-width: 280px;
+  max-width: 920px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(15, 20, 25, 0.04);
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+/* Hover subtle lift (desktop only) */
+@media (hover: hover) and (min-width: 901px) {
+  .editor-card:hover { box-shadow: 0 10px 30px rgba(15,20,25,0.06); transform: translateY(-2px); }
+}
+
+/* Avatars row (if used) */
+.avatars-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg,#7c8ea3,#546a86);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+.avatar.me {
+  background: linear-gradient(135deg,#111827,#0b1220);
+  box-shadow: 0 6px 16px rgba(2,6,23,0.16);
+}
+
+/* Info & error */
+.info-bar {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+#status, #version { font-weight: 600; color: var(--cta); }
+#error { color: var(--danger); min-height: 20px; margin-bottom: 8px; }
+
+/* Textarea (Notion-like) */
+textarea {
+  width: 100%;
+  height: 420px;                /* default for laptop/desktop */
+  min-height: 220px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 1.03rem;
+  line-height: 1.5;
+  resize: vertical;
+  background: var(--card-bg);
+  color: var(--text);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+  caret-color: var(--cta);
+  outline: none;
+}
+
+/* Focus ring subtle */
+textarea:focus {
+  border-color: #b7b7b7;
+  box-shadow: 0 6px 18px rgba(16,24,32,0.04);
+}
+
+/* Typing indicator */
+.typing-indicator {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-style: italic;
+  min-height: 20px;
+}
+
+/* Actions area */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* Solid CTA Button (chosen: Solid) */
+#sendButton {
+  background: var(--cta);
+  color: #fff;
+  border: 1px solid var(--cta);
+  border-radius: 8px;
+  padding: 11px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 140ms ease, transform 140ms ease, box-shadow 140ms ease;
+  box-shadow: 0 6px 18px rgba(15, 20, 25, 0.06);
+}
+.typing-indicator {
+  font-size: 0.9rem;
+  color: #6b6e71; /* muted text */
+  font-style: italic;
+  min-height: 20px;
+  margin-top: 6px;
+  transition: opacity 0.25s ease;
+  opacity: 0;
+}
+.typing-indicator.show {
+  opacity: 1;
+}
+
+#sendButton:not(:disabled):hover { background: var(--cta-hover); transform: translateY(-2px); box-shadow: 0 10px 22px rgba(10,14,18,0.08); }
+#sendButton:disabled { background: #cfcfcf; border-color: #cfcfcf; cursor: not-allowed; box-shadow: none; color: #fff; }
+
+/* Small saved flash on version */
+.saved-flash { animation: pulseSave 0.8s ease; }
+@keyframes pulseSave { 0%{ transform: translateY(0); } 50%{ transform: translateY(-3px); } 100%{ transform: translateY(0); } }
+
+/* Responsive breakpoints */
+/* Mobile: <= 480px */
+@media (max-width: 480px) {
+  .container { margin-top: 20px; padding: 0 12px; }
+  .editor-card { padding: 18px; border-radius: 8px; }
+  .header { padding: 14px 12px; font-size: 1.15rem; }
+  .avatars-row { gap: 8px; margin-bottom: 8px; }
+  .avatar { width: 32px; height: 32px; font-size: 0.86rem; }
+  textarea { height: 320px; font-size: 1rem; padding: 12px; }
+  .actions { justify-content: stretch; }
+  #sendButton { width: 100%; padding: 12px; font-size: 1rem; }
+  .info-bar { font-size: 0.9rem; gap: 8px; }
+}
+
+/* Tablet: 481 - 900px */
+@media (min-width: 481px) and (max-width: 900px) {
+  .container { margin-top: 28px; padding: 0 18px; }
+  .editor-card { padding: 22px; }
+  .header { font-size: 1.3rem; padding: 16px 12px; }
+  textarea { height: 360px; font-size: 1.02rem; }
+  .avatar { width: 34px; height: 34px; }
+  .actions { justify-content: flex-end; }
+  #sendButton { padding: 11px 20px; }
+}
+
+/* Laptop & Desktop: 901px+ */
+@media (min-width: 901px) {
+  .container { margin-top: 40px; padding: 0 24px; max-width: 1200px; }
+  .editor-card { padding: 28px 34px; max-width: 720px; }
+  textarea { height: 420px; }
+  .header { font-size: 1.6rem; padding: 18px 20px; }
+}
+
+/* Large desktop wide card */
+@media (min-width: 1440px) {
+  .container { margin-top: 56px; }
+  .editor-card { max-width: 880px; padding: 36px; border-radius: 12px; }
+  textarea { height: 480px; }
+}
+
+/* Utility: visually hidden for accessibility use */
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
