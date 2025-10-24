@@ -12,7 +12,8 @@ let typingTimeout;
 let isTyping = false;
 
 function connect() {
-    const socket = new SockJS('http://localhost:8080/ws');
+//    const socket = new SockJS('http://localhost:8080/ws');
+    const socket = new SockJS('https://realtime-collab-editor-m5ld.onrender.com/ws');
     stompClient = Stomp.over(socket);
 
     stompClient.connect({}, function(frame) {
