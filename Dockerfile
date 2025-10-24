@@ -5,7 +5,7 @@ FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 
 # Copy the jar file (after building with Maven)
-COPY target/realtime-collab-textapp-0.0.1-SNAPSHOT.jar app.jar
+COPY target/real-time-collaborative-text-app-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose port 8080
 EXPOSE 8080
