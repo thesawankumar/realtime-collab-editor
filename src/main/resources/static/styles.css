@@ -179,18 +179,67 @@ textarea:focus {
   transition: background 140ms ease, transform 140ms ease, box-shadow 140ms ease;
   box-shadow: 0 6px 18px rgba(15, 20, 25, 0.06);
 }
+/* Typing Indicator Styles */
 .typing-indicator {
   font-size: 0.9rem;
   color: #6b6e71; /* muted text */
   font-style: italic;
   min-height: 20px;
   margin-top: 6px;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
   opacity: 0;
+  transform: translateY(-2px);
 }
+
 .typing-indicator.show {
   opacity: 1;
+  transform: translateY(0);
 }
+
+/* Positioning below textarea */
+.editor-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-card textarea {
+  margin-bottom: 6px; /* space for typing indicator */
+}
+
+/* Responsive adjustments */
+
+/* Mobile: <=480px */
+@media (max-width: 480px) {
+  .typing-indicator {
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+  textarea {
+    height: 300px;
+    font-size: 1rem;
+  }
+}
+
+/* Tablet: 481px - 900px */
+@media (min-width: 481px) and (max-width: 900px) {
+  .typing-indicator {
+    font-size: 0.88rem;
+  }
+  textarea {
+    height: 360px;
+  }
+}
+
+/* Laptop & Desktop: 901px+ */
+@media (min-width: 901px) {
+  .typing-indicator {
+    font-size: 0.9rem;
+  }
+  textarea {
+    height: 420px;
+  }
+}
+
 
 #sendButton:not(:disabled):hover { background: var(--cta-hover); transform: translateY(-2px); box-shadow: 0 10px 22px rgba(10,14,18,0.08); }
 #sendButton:disabled { background: #cfcfcf; border-color: #cfcfcf; cursor: not-allowed; box-shadow: none; color: #fff; }
